@@ -1,0 +1,45 @@
+<div>
+    <div class="card">
+        <div class="card-header">
+                <div class="form-row d-flex justify-content-between">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="fas fa-globe"></i>
+                        </div>
+                      </div>
+                      <select class="form-control" name="pais1" [(ngModel)]="pais1" (change)="cargarData($event)">
+                        <option [ngValue]="null" selected> Pais 1 </option>
+                        <option *ngFor="let pais of paises" [ngValue]="pais">{{pais}}</option>
+                      </select>
+                    </div>
+                  </div>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <i class="fas fa-globe"></i>
+                          </div>
+                        </div>
+                        <select class="form-control" name="pais2" [(ngModel)]="pais2" (change)="cargarData($event)">
+                          <option [ngValue]="null" selected> Pais 2 </option>
+                          <option *ngFor="let pais of paises" [ngValue]="pais">{{pais}}</option>
+                        </select>
+                      </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                    <canvas baseChart 
+                        [data]="doughnutChartData" 
+                        [labels]="doughnutChartLabels" 
+                        [chartType]="doughnutChartType"
+                        [options]="doughnutChartOptions"
+                        [plugins]="doughnutChartPlugins"
+                        [legend]="doughnutChartLegend"
+                        [colors]="doughnutChartColors">
+                </canvas>
+                </div>
+        </div>
+    </div>
+</div>

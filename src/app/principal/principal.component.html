@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Datos- Covid 19</h1>
+    <form>
+      <!-- En una linea -->
+      <div class="form-row d-flex justify-content-between">
+        <!-- Fecha Desde -->
+        <div class="col-md-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+            </div>
+            <!-- DatePicker: Para que salga el calendario -->
+            <input  type="text"
+                    name="fechaInicio"
+                    placeholder="Fecha Desde"
+                    class="form-control"
+                    bsDatepicker
+                    [bsConfig]="{ isAnimated: true }"
+                    [minDate]="minimoDato"
+                    [maxDate]="fechaFin ? fechaFin : maximoDate"
+                    [(ngModel)]="fechaInicio"
+                    (bsValueChange)="cargarData($event)"
+                    autocomplete="off">
+          </div>
+        </div>
+        <!-- Fecha Hasta -->
+        <div class="col-md-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+            </div>
+            <!-- DatePicker: Para que salga el calendario -->
+            <input  type="text"
+                    name="fechaFin"
+                    placeholder="Fecha Hasta"
+                    class="form-control"
+                    bsDatepicker
+                    [bsConfig]="{ isAnimated: true }"
+                    [maxDate]="maximoDato"
+                    [minDate]="fechaInicio ? fechaInicio : minimoDato"
+                    [(ngModel)]="fechaFin"
+                    (bsValueChange)="cargarData($event)"
+                    autocomplete="off"><!-- Trae la funcion implementada -->
+          </div>
+        </div>
+        <!-- Paises -->
+        <div class="col-md-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-globe"></i>
+              </div>
+            </div>
+            <select class="form-control" name="pais" [(ngModel)]="pais" (change)="cargarData($event)">
+              <option [ngValue]="null" selected> Elige un Pais </option>
+              <option *ngFor="let pais of paises" [ngValue]="pais">{{pais}}</option>
+            </select>
+          </div>
+        </div>
+        
+
+      </div>
+    </form>
+  </div>
+  <!-- Mostrando la graafica -->
+  
+  <div class="chart-wrapper">
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+  </canvas>
+  </div>
